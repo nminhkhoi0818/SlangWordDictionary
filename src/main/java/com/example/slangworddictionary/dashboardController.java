@@ -1,11 +1,19 @@
 package com.example.slangworddictionary;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
+import java.util.Set;
 
 public class dashboardController {
-
     @FXML
     private Button add_word_btn;
 
@@ -37,12 +45,57 @@ public class dashboardController {
     private Button view_all_btn;
 
     @FXML
-    void switchForm(ActionEvent event) {
-        if (event.getSource() == view_all_btn) {
-            System.out.println("View all button");
-        }
-        else if (event.getSource() == find_def_btn) {
-            System.out.println("Find word by definiton");
+    private AnchorPane view_all_form;
+
+    @FXML
+    private AnchorPane find_def_form;
+
+    @FXML
+    private TableView<SlangDefinition> view_table;
+
+    @FXML
+    private TableColumn<SlangDefinition, String> view_def_col;
+
+    @FXML
+    private TableColumn<SlangDefinition, String> view_slang_col;
+
+    @FXML
+    private TableColumn<SlangDefinition, String> view_stt_col;
+
+    public void initialize() {
+        Dictionary dictionary = new Dictionary();
+        try {
+            dictionary.loadData(Dictionary.DATA_DIR);
+            ObservableList<SlangDefinition> slangData = FXCollections.observableArrayList();
+
+            for (String slang : Dictionary.data.keySet()) {
+                Set<String> definitions = Dictionary.data.get(slang);
+                for (String definition : definitions) {
+                    slangData.add(new SlangDefinition(slang, definition));
+                }
+            }
+
+            view_slang_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("slang"));
+            view_def_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("definition"));
+
+            view_table.setItems(slangData);
+        } catch (IOException e) {
+            // Handle the exception appropriately
         }
     }
+
+    @FXML
+    void switchForm(ActionEvent event) {
+        if (event.getSource() == view_all_btn) {
+            view_all_form.setVisible(true);
+            find_def_form.setVisible(false);
+
+        }
+        else if (event.getSource() == find_def_btn) {
+            find_def_form.setVisible(true);
+            view_all_form.setVisible(false);
+        }
+    }
+
+
 }
