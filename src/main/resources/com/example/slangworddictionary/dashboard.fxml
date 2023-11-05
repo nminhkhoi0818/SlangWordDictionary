@@ -44,7 +44,7 @@
                      <children>
                         <TableView fx:id="view_table" layoutY="91.0" prefHeight="329.0" prefWidth="591.0">
                            <columns>
-                              <TableColumn fx:id="view_stt_col" prefWidth="75.0" text="STT" />
+                              <TableColumn fx:id="view_index_col" prefWidth="75.0" text="STT" />
                               <TableColumn fx:id="view_slang_col" prefWidth="75.0" text="Slang Word" />
                               <TableColumn fx:id="view_def_col" prefWidth="75.0" text="Meaning" />
                            </columns>
@@ -59,7 +59,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="find_def_form" prefHeight="491.2" prefWidth="590.4" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="find_def_form" prefHeight="491.2" prefWidth="590.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="102.0" layoutY="14.0" prefHeight="89.0" prefWidth="410.0">
                            <children>
@@ -68,14 +68,14 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="58.0" layoutY="41.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
+                              <TextField fx:id="filter_def" layoutX="58.0" layoutY="41.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
                            </children>
                         </AnchorPane>
-                        <TableView layoutY="112.0" prefHeight="314.0" prefWidth="590.0">
+                        <TableView fx:id="filter_def_table" layoutY="112.0" prefHeight="314.0" prefWidth="590.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="STT" />
-                            <TableColumn prefWidth="75.0" text="Slang Word" />
-                              <TableColumn prefWidth="75.0" text="Meaning" />
+                            <TableColumn fx:id="filter_index_col" prefWidth="75.0" text="STT" />
+                            <TableColumn fx:id="filter_slang_col" prefWidth="75.0" text="Slang Word" />
+                              <TableColumn fx:id="filter_def_col" prefWidth="75.0" text="Meaning" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
