@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Set;
 
 public class dashboardController {
@@ -54,6 +55,9 @@ public class dashboardController {
     private AnchorPane find_def_form;
 
     @FXML
+    private AnchorPane find_slang_form;
+
+    @FXML
     private TableView<SlangDefinition> view_table;
 
     @FXML
@@ -78,7 +82,22 @@ public class dashboardController {
     private TableColumn<SlangDefinition, String> filter_slang_col;
 
     @FXML
+    private TableView<SlangDefinition> filter_slang_table;
+
+    @FXML
+    private TableColumn<SlangDefinition, String> filter_slang_def_col;
+
+    @FXML
+    private TableColumn<SlangDefinition, String> filter_slang_index_col;
+
+    @FXML
+    private TableColumn<SlangDefinition, String> filter_slang_slang_col;
+
+    @FXML
     private TextField filter_def;
+
+    @FXML
+    private TextField filter_slang;
 
     public void initialize() {
         Dictionary dictionary = new Dictionary();
@@ -101,6 +120,10 @@ public class dashboardController {
             filter_def.textProperty().addListener((observable, oldValue, newValue) -> {
                 searchSlangByDef();
             });
+
+            filter_slang.textProperty().addListener((observable, oldValue, newValue) -> {
+                searchDefBySlang();
+            });
         } catch (IOException e) {
             // Handle the exception appropriately
         }
@@ -111,28 +134,51 @@ public class dashboardController {
         if (event.getSource() == view_all_btn) {
             view_all_form.setVisible(true);
             find_def_form.setVisible(false);
-        }
-        else if (event.getSource() == find_def_btn) {
+            find_slang_form.setVisible(false);
+        } else if (event.getSource() == find_def_btn) {
             find_def_form.setVisible(true);
             view_all_form.setVisible(false);
+            find_slang_form.setVisible(false);
+        } else if (event.getSource() == find_slang_btn) {
+            find_slang_form.setVisible(true);
+            view_all_form.setVisible(false);
+            find_def_form.setVisible(false);
         }
     }
 
     @FXML
     void searchSlangByDef() {
-        String searchTerm = filter_def.getText().toLowerCase().trim();
+        search(filter_def, "definition");
+    }
+
+    @FXML
+    void searchDefBySlang() {
+        search(filter_slang, "slang");
+    }
+
+    private void search(TextField filterSlang, String filterType) {
+        String searchTerm = filterSlang.getText().toLowerCase().trim();
         FilteredList<SlangDefinition> filteredData = new FilteredList<>(view_table.getItems());
 
         filteredData.setPredicate(slangDefinition -> {
             if (searchTerm.isEmpty()) {
                 return true;
             }
-            return slangDefinition.getDefinition().toLowerCase().contains(searchTerm);
+            if (Objects.equals(filterType, "definition"))
+                return slangDefinition.getDefinition().toLowerCase().contains(searchTerm);
+            else
+                return slangDefinition.getSlang().toLowerCase().contains(searchTerm);
         });
 
-        filter_slang_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("slang"));
-        filter_def_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("definition"));
-        filter_def_table.setItems(filteredData);
+        if (Objects.equals(filterType, "definition")) {
+            filter_slang_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("slang"));
+            filter_def_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("definition"));
+            filter_def_table.setItems(filteredData);
+        }
+        else {
+            filter_slang_slang_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("slang"));
+            filter_slang_def_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("definition"));
+            filter_slang_table.setItems(filteredData);
+        }
     }
-
 }
