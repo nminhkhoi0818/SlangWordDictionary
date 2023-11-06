@@ -5,10 +5,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -61,6 +62,9 @@ public class DashboardController {
 
     @FXML
     private AnchorPane add_slang_form;
+
+    @FXML
+    private AnchorPane edit_form;
 
     // 1. View all words
 
@@ -126,6 +130,29 @@ public class DashboardController {
     @FXML
     private TextField add_slang_field;
 
+    // 6. Edit slang word
+    @FXML
+    private TextField edit_search;
+
+    @FXML
+    private Button edit_search_btn;
+
+    @FXML
+    private TableColumn<SlangDefinition, String> edit_slang_def_col;
+
+    @FXML
+    private TableColumn<SlangDefinition, String> edit_slang_index_col;
+
+    @FXML
+    private TableColumn<SlangDefinition, String> edit_slang_slang_col;
+
+    @FXML
+    private TableView<SlangDefinition> edit_table;
+
+    // 7. Delete slang word
+
+    // 8. Random slang word
+
     private List<SearchHistoryEntry> searchHistory = new ArrayList<>();
 
     public void initialize() throws IOException {
@@ -136,6 +163,9 @@ public class DashboardController {
         });
         filter_slang.textProperty().addListener((observable, oldValue, newValue) -> {
             searchDefBySlang();
+        });
+        edit_search.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchInEdit();
         });
     }
 
@@ -183,6 +213,7 @@ public class DashboardController {
             find_slang_form.setVisible(false);
             search_history_form.setVisible(false);
             add_slang_form.setVisible(false);
+            edit_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == find_def_btn) {
@@ -191,6 +222,7 @@ public class DashboardController {
             find_slang_form.setVisible(false);
             search_history_form.setVisible(false);
             add_slang_form.setVisible(false);
+            edit_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == find_slang_btn) {
@@ -199,6 +231,7 @@ public class DashboardController {
             find_def_form.setVisible(false);
             search_history_form.setVisible(false);
             add_slang_form.setVisible(false);
+            edit_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == search_history_btn) {
@@ -207,10 +240,19 @@ public class DashboardController {
             view_all_form.setVisible(false);
             find_def_form.setVisible(false);
             add_slang_form.setVisible(false);
+            edit_form.setVisible(false);
 
             readSearchHistoryData();
         } else if (event.getSource() == add_slang_btn) {
             add_slang_form.setVisible(true);
+            search_history_form.setVisible(false);
+            find_slang_form.setVisible(false);
+            view_all_form.setVisible(false);
+            find_def_form.setVisible(false);
+            edit_form.setVisible(false);
+        } else if (event.getSource() == edit_word_btn) {
+            edit_form.setVisible(true);
+            add_slang_form.setVisible(false);
             search_history_form.setVisible(false);
             find_slang_form.setVisible(false);
             view_all_form.setVisible(false);
@@ -243,6 +285,10 @@ public class DashboardController {
         search(filter_slang, "slang");
     }
 
+    private void searchInEdit() {
+        search(edit_search, "edit");
+    }
+
     private void search(TextField filterSlang, String filterType) {
         String searchTerm = filterSlang.getText().toLowerCase().trim();
         FilteredList<SlangDefinition> filteredData = new FilteredList<>(view_table.getItems());
@@ -262,10 +308,15 @@ public class DashboardController {
             filter_def_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("definition"));
             filter_def_table.setItems(filteredData);
         }
-        else {
+        else if (Objects.equals(filterType, "slang")) {
             filter_slang_slang_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("slang"));
             filter_slang_def_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("definition"));
             filter_slang_table.setItems(filteredData);
+        }
+        else {
+            edit_slang_slang_col.setCellValueFactory(new PropertyValueFactory<>("slang"));
+            edit_slang_def_col.setCellValueFactory(new PropertyValueFactory<>("definition"));
+            edit_table.setItems(filteredData);
         }
     }
 
@@ -318,6 +369,88 @@ public class DashboardController {
                 alert.setContentText("Successfully Added!");
                 alert.showAndWait();
             }
+
+        }
+    }
+
+    public void getItem() {
+        ObservableList<SlangDefinition> selectedSlang = edit_table.getSelectionModel().getSelectedItems();
+
+        VBox content = new VBox(10);
+        Label slangLabel = new Label("Slang: ");
+        Label meaningLabel = new Label("Meaning: ");
+        GridPane grid = new GridPane();
+        TextField slangField = new TextField();
+        TextField meaningField = new TextField();
+        grid.setHgap(10);
+        grid.setVgap(5);
+        grid.add(slangLabel, 0, 0);
+        grid.add(meaningLabel, 0, 1);
+        grid.add(slangField, 1, 0);
+        GridPane.setHgrow(slangField, Priority.ALWAYS);
+        grid.add(meaningField, 1, 1);
+        GridPane.setHgrow(meaningField, Priority.ALWAYS);
+        content.getChildren().add(grid);
+
+        Dialog<Object> dialog = new Dialog<>();
+        dialog.getDialogPane().setHeaderText("Edit word");
+        dialog.getDialogPane().setContent(content);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        Button button = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+        button.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (!validateDialog()) {
+                    event.consume();
+                }
+            }
+
+            private boolean validateDialog() {
+                if ((slangField.getText().isEmpty()) || (meaningField.getText().isEmpty())) {
+                    return false;
+                }
+                String editSlang = selectedSlang.get(0).getSlang();
+                String editDef = selectedSlang.get(0).getDefinition();
+                // Delete entry
+                if (Dictionary.getData().containsKey(editSlang)) {
+                    Set<String> existDef = Dictionary.getData().get(editSlang);
+                    existDef.remove(editDef);
+
+                    if (existDef.isEmpty()) {
+                        Dictionary.getData().remove(editSlang);
+                    }
+                }
+
+                // Add new entry
+                String newSlang = slangField.getText();
+                String newDef = meaningField.getText();
+
+                if (!Objects.equals(newSlang, "") && !Objects.equals(newDef, "")) {
+                    if (Dictionary.getData().containsKey(newSlang)) {
+                        Dictionary.getData().get(newSlang).add(newDef);
+                    } else {
+                        Set<String> newSetDef = new HashSet<>(Collections.singleton(newDef));
+                        Dictionary.getData().put(newSlang, newSetDef);
+                    }
+                }
+                saveDictionaryToFile();
+
+                return true;
+            }
+        });
+        dialog.show();
+    }
+
+    private void saveDictionaryToFile() {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(Dictionary.DATA_DIR, false));
+            for (Map.Entry<String, Set<String>> entry : Dictionary.getData().entrySet()) {
+                String slang = entry.getKey();
+                String definitions = String.join("|", entry.getValue());
+                bw.write(slang + "`" + definitions + "\n");
+            }
+            bw.close();
+        } catch (IOException ignored) {
 
         }
     }

@@ -84,7 +84,7 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="find_slang_form" layoutX="10.0" layoutY="10.0" prefHeight="501.6" prefWidth="600.8" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="find_slang_form" layoutX="10.0" layoutY="10.0" prefHeight="501.6" prefWidth="600.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="102.0" layoutY="14.0" prefHeight="89.0" prefWidth="410.0">
                            <children>
@@ -126,7 +126,7 @@
                            </columnResizePolicy>
                         </TableView>
                      </children></AnchorPane>
-                  <AnchorPane fx:id="add_slang_form" prefHeight="491.2" prefWidth="591.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="add_slang_form" prefHeight="491.2" prefWidth="591.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label alignment="CENTER" layoutX="160.0" layoutY="44.0" prefHeight="48.0" prefWidth="270.0" text="Add new Slang Word">
                            <font>
@@ -147,6 +147,31 @@
                            </font>
                         </Label>
                      </children></AnchorPane>
+                  <AnchorPane fx:id="edit_form" layoutX="20.0" layoutY="20.0" prefHeight="521.6" prefWidth="620.8" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane layoutX="102.0" layoutY="14.0" prefHeight="89.0" prefWidth="410.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="112.0" layoutY="2.0" prefHeight="23.0" prefWidth="185.0" text="Edit slang word">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="edit_search" layoutX="21.0" layoutY="41.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
+                              <Button fx:id="edit_search_btn" layoutX="327.0" layoutY="42.0" mnemonicParsing="false" onAction="#onSlangSearchClick" prefHeight="31.0" prefWidth="82.0" text="Search" />
+                           </children>
+                        </AnchorPane>
+                        <TableView fx:id="edit_table" layoutY="112.0" onMouseClicked="#getItem" prefHeight="314.0" prefWidth="590.0">
+                           <columns>
+                              <TableColumn fx:id="edit_slang_index_col" prefWidth="75.0" text="STT" />
+                              <TableColumn fx:id="edit_slang_slang_col" prefWidth="75.0" text="Slang Word" />
+                              <TableColumn fx:id="edit_slang_def_col" prefWidth="75.0" text="Meaning" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </center>
