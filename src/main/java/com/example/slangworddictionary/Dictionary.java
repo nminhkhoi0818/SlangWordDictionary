@@ -23,13 +23,25 @@ public class Dictionary {
 
                 if (slangDef.length == 2) {
                     String[] definitions = slangDef[1].split("\\|");
-                    Set<String> setDef = new HashSet<>(Arrays.stream(definitions).collect(Collectors.toSet()));
-                    data.put(slangDef[0], setDef);
+                    Set<String> setDef = Arrays.stream(definitions).collect(Collectors.toSet());
+                    if (data.containsKey(slangDef[0])) {
+                        data.get(slangDef[0]).addAll(setDef);
+                    } else {
+                        data.put(slangDef[0], setDef);
+                    }
                 }
             }
             br.close();
         } finally {
 //            System.out.println(data);
         }
+    }
+
+    public static String getDataDir() {
+        return DATA_DIR;
+    }
+
+    public static TreeMap<String, Set<String>> getData() {
+        return data;
     }
 }

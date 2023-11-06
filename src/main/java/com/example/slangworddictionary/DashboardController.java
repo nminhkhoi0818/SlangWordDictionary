@@ -6,19 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.TextField;
 
 import java.io.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class DashboardController {
     // Navigation button
@@ -294,6 +288,37 @@ public class DashboardController {
     public void onSubmitNewWordButton() throws IOException {
         String slang = add_slang_field.getText();
         String definition = add_def_field.getText();
-        addSlangToDictionary(slang, definition);
+        if (!Objects.equals(slang, "") && !Objects.equals(definition, "")) {
+            if (Dictionary.getData().containsKey(slang)) {
+                Alert alert;
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Do you want to overwrite this slang word");
+                alert.getButtonTypes().clear();
+                alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+                Optional<ButtonType> option = alert.showAndWait();
+                if (option.get().equals(ButtonType.YES)) {
+
+                } else if (option.get().equals(ButtonType.NO)) {
+                    addSlangToDictionary(slang, definition);
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Duplicated!");
+                    alert.showAndWait();
+                }
+            }
+            else {
+                addSlangToDictionary(slang, definition);
+                Alert alert;
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully Added!");
+                alert.showAndWait();
+            }
+
+        }
     }
 }
