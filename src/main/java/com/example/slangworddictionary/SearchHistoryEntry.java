@@ -6,7 +6,12 @@ public class SearchHistoryEntry {
     private String searchTerm;
     private LocalDateTime timestamp;
 
-    public SearchHistoryEntry (String searchTerm) {
+    public SearchHistoryEntry (String searchTerm, LocalDateTime timestamp) {
+        this.searchTerm = searchTerm;
+        this.timestamp = timestamp;
+    }
+
+    public SearchHistoryEntry(String searchTerm) {
         this.searchTerm = searchTerm;
         this.timestamp = LocalDateTime.now();
     }

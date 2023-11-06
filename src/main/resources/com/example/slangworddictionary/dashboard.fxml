@@ -63,12 +63,13 @@
                      <children>
                         <AnchorPane layoutX="102.0" layoutY="14.0" prefHeight="89.0" prefWidth="410.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="143.0" layoutY="14.0" prefHeight="18.0" prefWidth="123.0" text="Find by definition">
+                              <Label alignment="CENTER" layoutX="132.0" layoutY="3.0" prefHeight="22.0" prefWidth="168.0" text="Find by definition">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="filter_def" layoutX="58.0" layoutY="41.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
+                              <TextField fx:id="filter_def" layoutX="20.0" layoutY="41.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
+                              <Button fx:id="seach_def_btn" layoutX="337.0" layoutY="41.0" mnemonicParsing="false" onAction="#onDefSearchClick" prefHeight="33.0" prefWidth="94.0" text="Search" />
                            </children>
                         </AnchorPane>
                         <TableView fx:id="filter_def_table" layoutY="112.0" prefHeight="314.0" prefWidth="590.0">
@@ -83,16 +84,17 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="find_slang_form" layoutX="10.0" layoutY="10.0" prefHeight="501.6" prefWidth="600.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="find_slang_form" layoutX="10.0" layoutY="10.0" prefHeight="501.6" prefWidth="600.8" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="102.0" layoutY="14.0" prefHeight="89.0" prefWidth="410.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="143.0" layoutY="14.0" prefHeight="19.0" prefWidth="126.0" text="Find by slang word">
+                              <Label alignment="CENTER" layoutX="112.0" layoutY="2.0" prefHeight="23.0" prefWidth="185.0" text="Find by slang word">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="filter_slang" layoutX="58.0" layoutY="41.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
+                              <TextField fx:id="filter_slang" layoutX="21.0" layoutY="41.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
+                              <Button fx:id="search_slang_btn" layoutX="327.0" layoutY="42.0" mnemonicParsing="false" onAction="#onSlangSearchClick" prefHeight="31.0" prefWidth="82.0" text="Search" />
                            </children>
                         </AnchorPane>
                         <TableView fx:id="filter_slang_table" layoutY="112.0" prefHeight="314.0" prefWidth="590.0">
@@ -107,7 +109,23 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="491.2" prefWidth="590.4" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="search_history_form" prefHeight="491.2" prefWidth="591.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="178.0" layoutY="22.0" prefHeight="47.0" prefWidth="236.0" text="Search History">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="search_history_table" layoutY="105.0" prefHeight="304.0" prefWidth="590.0">
+                          <columns>
+                            <TableColumn fx:id="word_history_col" prefWidth="75.0" text="Word" />
+                            <TableColumn fx:id="time_history_col" prefWidth="75.0" text="Timestamp" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children></AnchorPane>
                   <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="491.2" prefWidth="590.4" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>

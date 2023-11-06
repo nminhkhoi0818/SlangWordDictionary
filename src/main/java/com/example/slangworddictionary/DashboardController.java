@@ -13,9 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -62,6 +61,9 @@ public class DashboardController {
     private AnchorPane find_slang_form;
 
     @FXML
+    private AnchorPane search_history_form;
+
+    @FXML
     private TableView<SlangDefinition> view_table;
 
     @FXML
@@ -103,11 +105,21 @@ public class DashboardController {
     @FXML
     private TextField filter_slang;
 
+    @FXML
+    private TableView<SearchHistoryEntry> search_history_table;
+
+    @FXML
+    private TableColumn<SearchHistoryEntry, String> word_history_col;
+
+    @FXML
+    private TableColumn<SlangDefinition, LocalDateTime> time_history_col;
+
     private List<SearchHistoryEntry> searchHistory = new ArrayList<>();
 
     public void initialize() {
         Dictionary dictionary = new Dictionary();
         try {
+            // Set up for view all words
             dictionary.loadData(Dictionary.DATA_DIR);
             ObservableList<SlangDefinition> slangData = FXCollections.observableArrayList();
 
@@ -123,6 +135,7 @@ public class DashboardController {
 
             view_table.setItems(slangData);
 
+            // Add filter for search
             filter_def.textProperty().addListener((observable, oldValue, newValue) -> {
                 searchSlangByDef();
             });
@@ -130,8 +143,25 @@ public class DashboardController {
             filter_slang.textProperty().addListener((observable, oldValue, newValue) -> {
                 searchDefBySlang();
             });
+
+            // Read search history data
+            ObservableList<SearchHistoryEntry> historyData = FXCollections.observableArrayList();
+            readSearchHistoryFromFile(historyData);
+            word_history_col.setCellValueFactory(new PropertyValueFactory<>("searchTerm"));
+            time_history_col.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
+            search_history_table.setItems(historyData);
         } catch (IOException e) {
 
+        }
+    }
+
+    void readSearchHistoryFromFile(ObservableList<SearchHistoryEntry> historyData) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("assets/history.txt"));
+        String line;
+        while (((line = br.readLine()) != null)) {
+            String word = line.split(" ")[0];
+            LocalDateTime timestamp = LocalDateTime.parse(line.split(" ")[1]);
+            historyData.add(new SearchHistoryEntry(word, timestamp));
         }
     }
 
@@ -141,12 +171,20 @@ public class DashboardController {
             view_all_form.setVisible(true);
             find_def_form.setVisible(false);
             find_slang_form.setVisible(false);
+            search_history_form.setVisible(false);
         } else if (event.getSource() == find_def_btn) {
             find_def_form.setVisible(true);
             view_all_form.setVisible(false);
             find_slang_form.setVisible(false);
+            search_history_form.setVisible(false);
         } else if (event.getSource() == find_slang_btn) {
             find_slang_form.setVisible(true);
+            view_all_form.setVisible(false);
+            find_def_form.setVisible(false);
+            search_history_form.setVisible(false);
+        } else if (event.getSource() == search_history_btn) {
+            search_history_form.setVisible(true);
+            find_slang_form.setVisible(false);
             view_all_form.setVisible(false);
             find_def_form.setVisible(false);
         }
@@ -154,9 +192,9 @@ public class DashboardController {
 
     void saveSearchHistoryToFile() {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("assets/history.txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("assets/history.txt", true));
             for (SearchHistoryEntry entry : searchHistory) {
-                bw.write(entry.getSearchTerm() + "-" + entry.getTimestamp() + "\n");
+                bw.write(entry.getSearchTerm() + " " + entry.getTimestamp() + "\n");
             }
             bw.close();
         } catch (IOException e) {
@@ -183,7 +221,6 @@ public class DashboardController {
         String searchTerm = filterSlang.getText().toLowerCase().trim();
         FilteredList<SlangDefinition> filteredData = new FilteredList<>(view_table.getItems());
 
-        addSearchToHistory(searchTerm);
         filteredData.setPredicate(slangDefinition -> {
             if (searchTerm.isEmpty()) {
                 return true;
@@ -204,5 +241,15 @@ public class DashboardController {
             filter_slang_def_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("definition"));
             filter_slang_table.setItems(filteredData);
         }
+    }
+
+    public void onSlangSearchClick() {
+        String searchTerm = filter_slang.getText();
+        addSearchToHistory(searchTerm);
+    }
+
+    public void onDefSearchClick() {
+        String searchTerm = filter_def.getText();
+        addSearchToHistory(searchTerm);
     }
 }
