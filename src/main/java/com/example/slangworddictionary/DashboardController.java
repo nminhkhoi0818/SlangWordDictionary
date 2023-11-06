@@ -13,11 +13,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class dashboardController {
+public class DashboardController {
     @FXML
     private Button add_word_btn;
 
@@ -99,6 +103,8 @@ public class dashboardController {
     @FXML
     private TextField filter_slang;
 
+    private List<SearchHistoryEntry> searchHistory = new ArrayList<>();
+
     public void initialize() {
         Dictionary dictionary = new Dictionary();
         try {
@@ -125,7 +131,7 @@ public class dashboardController {
                 searchDefBySlang();
             });
         } catch (IOException e) {
-            // Handle the exception appropriately
+
         }
     }
 
@@ -146,6 +152,23 @@ public class dashboardController {
         }
     }
 
+    void saveSearchHistoryToFile() {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("assets/history.txt"));
+            for (SearchHistoryEntry entry : searchHistory) {
+                bw.write(entry.getSearchTerm() + "-" + entry.getTimestamp() + "\n");
+            }
+            bw.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    void addSearchToHistory(String searchTerm) {
+        searchHistory.add(new SearchHistoryEntry(searchTerm));
+        saveSearchHistoryToFile();
+    }
+
     @FXML
     void searchSlangByDef() {
         search(filter_def, "definition");
@@ -160,6 +183,7 @@ public class dashboardController {
         String searchTerm = filterSlang.getText().toLowerCase().trim();
         FilteredList<SlangDefinition> filteredData = new FilteredList<>(view_table.getItems());
 
+        addSearchToHistory(searchTerm);
         filteredData.setPredicate(slangDefinition -> {
             if (searchTerm.isEmpty()) {
                 return true;
