@@ -7633,7 +7633,6 @@ ZZZ` bored|Sleepy| tired
 ^_^` satisfied|Happiness
 ^_~`Wink
 ^~^`Mischievous Smile
-mk`minhkhoi|1234|minhkhoi1
 |O|`LOL
 }:-)`Devilish smile
 ~`Denotes Sarcasm| Put At The End Of A Word To Make It Longer
