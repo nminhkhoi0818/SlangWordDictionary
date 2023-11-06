@@ -21,8 +21,9 @@ import java.util.Objects;
 import java.util.Set;
 
 public class DashboardController {
+    // Navigation button
     @FXML
-    private Button add_word_btn;
+    private Button add_slang_btn;
 
     @FXML
     private Button delete_word_btn;
@@ -51,6 +52,7 @@ public class DashboardController {
     @FXML
     private Button view_all_btn;
 
+    // Form - AnchorPane
     @FXML
     private AnchorPane view_all_form;
 
@@ -64,6 +66,11 @@ public class DashboardController {
     private AnchorPane search_history_form;
 
     @FXML
+    private AnchorPane add_slang_form;
+
+    // 1. View all words
+
+    @FXML
     private TableView<SlangDefinition> view_table;
 
     @FXML
@@ -75,35 +82,39 @@ public class DashboardController {
     @FXML
     private TableColumn<SlangDefinition, String> view_index_col;
 
+    // 2. Filter by definition
     @FXML
     private TableView<SlangDefinition> filter_def_table;
-
-    @FXML
-    private TableColumn<SlangDefinition, String> filter_def_col;
 
     @FXML
     private TableColumn<SlangDefinition, String> filter_index_col;
 
     @FXML
+    private TableColumn<SlangDefinition, String> filter_def_col;
+
+    @FXML
     private TableColumn<SlangDefinition, String> filter_slang_col;
 
     @FXML
-    private TableView<SlangDefinition> filter_slang_table;
+    private TextField filter_def;
 
+    // 3. Filter by slang word
     @FXML
-    private TableColumn<SlangDefinition, String> filter_slang_def_col;
+    private TableView<SlangDefinition> filter_slang_table;
 
     @FXML
     private TableColumn<SlangDefinition, String> filter_slang_index_col;
 
     @FXML
+    private TableColumn<SlangDefinition, String> filter_slang_def_col;
+
+    @FXML
     private TableColumn<SlangDefinition, String> filter_slang_slang_col;
 
     @FXML
-    private TextField filter_def;
-
-    @FXML
     private TextField filter_slang;
+
+    // 4. Search history
 
     @FXML
     private TableView<SearchHistoryEntry> search_history_table;
@@ -114,45 +125,50 @@ public class DashboardController {
     @FXML
     private TableColumn<SlangDefinition, LocalDateTime> time_history_col;
 
+    // 5. Add new slang
+    @FXML
+    private TextField add_def_field;
+
+    @FXML
+    private TextField add_slang_field;
+
     private List<SearchHistoryEntry> searchHistory = new ArrayList<>();
 
-    public void initialize() {
+    public void initialize() throws IOException {
+        readAllWords();
+        // Add filter for search
+        filter_def.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchSlangByDef();
+        });
+        filter_slang.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchDefBySlang();
+        });
+    }
+
+    void readAllWords() throws IOException {
         Dictionary dictionary = new Dictionary();
-        try {
-            // Set up for view all words
-            dictionary.loadData(Dictionary.DATA_DIR);
-            ObservableList<SlangDefinition> slangData = FXCollections.observableArrayList();
+        dictionary.loadData(Dictionary.DATA_DIR);
+        ObservableList<SlangDefinition> slangData = FXCollections.observableArrayList();
 
-            for (String slang : Dictionary.data.keySet()) {
-                Set<String> definitions = Dictionary.data.get(slang);
-                for (String definition : definitions) {
-                    slangData.add(new SlangDefinition(slang, definition));
-                }
+        for (String slang : Dictionary.data.keySet()) {
+            Set<String> definitions = Dictionary.data.get(slang);
+            for (String definition : definitions) {
+                slangData.add(new SlangDefinition(slang, definition));
             }
-            view_index_col.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(view_table.getItems().indexOf(param.getValue()) + 1).asString());
-            view_slang_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("slang"));
-            view_def_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("definition"));
-
-            view_table.setItems(slangData);
-
-            // Add filter for search
-            filter_def.textProperty().addListener((observable, oldValue, newValue) -> {
-                searchSlangByDef();
-            });
-
-            filter_slang.textProperty().addListener((observable, oldValue, newValue) -> {
-                searchDefBySlang();
-            });
-
-            // Read search history data
-            ObservableList<SearchHistoryEntry> historyData = FXCollections.observableArrayList();
-            readSearchHistoryFromFile(historyData);
-            word_history_col.setCellValueFactory(new PropertyValueFactory<>("searchTerm"));
-            time_history_col.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
-            search_history_table.setItems(historyData);
-        } catch (IOException e) {
-
         }
+        view_index_col.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(view_table.getItems().indexOf(param.getValue()) + 1).asString());
+        view_slang_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("slang"));
+        view_def_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("definition"));
+
+        view_table.setItems(slangData);
+    }
+
+    void readSearchHistoryData() throws IOException {
+        ObservableList<SearchHistoryEntry> historyData = FXCollections.observableArrayList();
+        readSearchHistoryFromFile(historyData);
+        word_history_col.setCellValueFactory(new PropertyValueFactory<>("searchTerm"));
+        time_history_col.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
+        search_history_table.setItems(historyData);
     }
 
     void readSearchHistoryFromFile(ObservableList<SearchHistoryEntry> historyData) throws IOException {
@@ -166,24 +182,42 @@ public class DashboardController {
     }
 
     @FXML
-    void switchForm(ActionEvent event) {
+    void switchForm(ActionEvent event) throws IOException {
         if (event.getSource() == view_all_btn) {
             view_all_form.setVisible(true);
             find_def_form.setVisible(false);
             find_slang_form.setVisible(false);
             search_history_form.setVisible(false);
+            add_slang_form.setVisible(false);
+
+            readAllWords();
         } else if (event.getSource() == find_def_btn) {
             find_def_form.setVisible(true);
             view_all_form.setVisible(false);
             find_slang_form.setVisible(false);
             search_history_form.setVisible(false);
+            add_slang_form.setVisible(false);
+
+            readAllWords();
         } else if (event.getSource() == find_slang_btn) {
             find_slang_form.setVisible(true);
             view_all_form.setVisible(false);
             find_def_form.setVisible(false);
             search_history_form.setVisible(false);
+            add_slang_form.setVisible(false);
+
+            readAllWords();
         } else if (event.getSource() == search_history_btn) {
             search_history_form.setVisible(true);
+            find_slang_form.setVisible(false);
+            view_all_form.setVisible(false);
+            find_def_form.setVisible(false);
+            add_slang_form.setVisible(false);
+
+            readSearchHistoryData();
+        } else if (event.getSource() == add_slang_btn) {
+            add_slang_form.setVisible(true);
+            search_history_form.setVisible(false);
             find_slang_form.setVisible(false);
             view_all_form.setVisible(false);
             find_def_form.setVisible(false);
@@ -208,9 +242,7 @@ public class DashboardController {
     }
 
     @FXML
-    void searchSlangByDef() {
-        search(filter_def, "definition");
-    }
+    void searchSlangByDef() { search(filter_def, "definition"); }
 
     @FXML
     void searchDefBySlang() {
@@ -251,5 +283,17 @@ public class DashboardController {
     public void onDefSearchClick() {
         String searchTerm = filter_def.getText();
         addSearchToHistory(searchTerm);
+    }
+
+    void addSlangToDictionary(String slang, String definition) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("assets/data/slang.txt", true));
+        bw.write(slang + "`" + definition + "\n");
+        bw.close();
+    }
+
+    public void onSubmitNewWordButton() throws IOException {
+        String slang = add_slang_field.getText();
+        String definition = add_def_field.getText();
+        addSlangToDictionary(slang, definition);
     }
 }
