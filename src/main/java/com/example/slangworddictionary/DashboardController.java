@@ -221,6 +221,22 @@ public class DashboardController {
     @FXML
     private Button quiz_slang_d;
 
+    // 10. Definition quiz game
+    @FXML
+    private Text quiz_def_question;
+
+    @FXML
+    private Button quiz_def_a;
+
+    @FXML
+    private Button quiz_def_b;
+
+    @FXML
+    private Button quiz_def_c;
+
+    @FXML
+    private Button quiz_def_d;
+
     private List<SearchHistoryEntry> searchHistory = new ArrayList<>();
 
     public void initialize() throws IOException {
@@ -641,25 +657,26 @@ public class DashboardController {
     }
 
     public void getRandomSlangQuesAns() {
-        List<String> listKey = new ArrayList<String>(Dictionary.getData().keySet());
+        List<String> listKey = new ArrayList<>(Dictionary.getData().keySet());
         Random randSlang = new Random();
         String randomSlang = listKey.get(randSlang.nextInt(listKey.size()));
         Set<String> randomDefs = Dictionary.getData().get(randomSlang);
-        Random randDef = new Random();
         String[] defArray = randomDefs.toArray(new String[0]);
-        String correctAns = defArray[randDef.nextInt(defArray.length)];
+        String correctAns = defArray[new Random().nextInt(defArray.length)];
         quiz_slang_question.setText(randomSlang);
+
         List<String> listAns = new ArrayList<>();
         listAns.add(correctAns);
+
         for (int i = 1; i <= 3; i++) {
             Random randSlangDif = new Random();
             String randomSlangDif = listKey.get(randSlangDif.nextInt(listKey.size()));
             Set<String> randomDefsDif = Dictionary.getData().get(randomSlangDif);
-            Random randDefDif = new Random();
             String[] defArrayDif = randomDefsDif.toArray(new String[0]);
-            String randomDefDif = defArrayDif[randDefDif.nextInt(defArray.length)];
-            listAns.add((randomDefDif));
+            String randomDefDif = defArrayDif[new Random().nextInt(defArrayDif.length)];
+            listAns.add(randomDefDif);
         }
+
         Collections.shuffle(listAns);
         quiz_slang_a.setText(listAns.get(0));
         quiz_slang_b.setText(listAns.get(1));
@@ -671,6 +688,37 @@ public class DashboardController {
         quiz_slang_c.setOnAction(e -> checkAnswer(quiz_slang_c, correctAns));
         quiz_slang_d.setOnAction(e -> checkAnswer(quiz_slang_d, correctAns));
     }
+
+    public void getRandomDefQuesAns() {
+        List<String> listKey = new ArrayList<>(Dictionary.getData().keySet());
+        Random randSlang = new Random();
+        String correctAns = listKey.get(randSlang.nextInt(listKey.size()));
+        Set<String> randomDefs = Dictionary.getData().get(correctAns);
+        String[] defArray = randomDefs.toArray(new String[0]);
+        String randomDef = defArray[new Random().nextInt(defArray.length)];
+        quiz_def_question.setText(randomDef);
+
+        List<String> listAns = new ArrayList<>();
+        listAns.add(correctAns);
+
+        for (int i = 1; i <= 3; i++) {
+            Random randSlangDif = new Random();
+            String randomSlangDif = listKey.get(randSlangDif.nextInt(listKey.size()));
+            listAns.add(randomSlangDif);
+        }
+
+        Collections.shuffle(listAns);
+        quiz_def_a.setText(listAns.get(0));
+        quiz_def_b.setText(listAns.get(1));
+        quiz_def_c.setText(listAns.get(2));
+        quiz_def_d.setText(listAns.get(3));
+
+        quiz_def_a.setOnAction(e -> checkAnswer(quiz_def_a, correctAns));
+        quiz_def_b.setOnAction(e -> checkAnswer(quiz_def_b, correctAns));
+        quiz_def_c.setOnAction(e -> checkAnswer(quiz_def_c, correctAns));
+        quiz_def_d.setOnAction(e -> checkAnswer(quiz_def_d, correctAns));
+    }
+
 
     void checkAnswer(Button clickedButton, String correctAnswer) {
         String buttonText = clickedButton.getText();
@@ -695,5 +743,14 @@ public class DashboardController {
     public void showQuizDef() {
         handleQuizForm(false);
         quiz_def_form.setVisible(true);
+        getRandomDefQuesAns();
+    }
+
+    public void getSlangQuestion() {
+        getRandomSlangQuesAns();
+    }
+
+    public void getDefQuestion(ActionEvent actionEvent) {
+        getRandomDefQuesAns();
     }
 }
