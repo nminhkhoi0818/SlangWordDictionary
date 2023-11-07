@@ -195,7 +195,7 @@ public class DashboardController {
     @FXML
     private Button random_refresh_btn;
 
-    // 9, 10. Quiz Game
+    // Quiz Game
     @FXML
     private Label quiz_header;
 
@@ -204,6 +204,22 @@ public class DashboardController {
 
     @FXML
     private Button quiz_def_btn;
+
+    // 9. Slang quiz game
+    @FXML
+    private Text quiz_slang_question;
+
+    @FXML
+    private Button quiz_slang_a;
+
+    @FXML
+    private Button quiz_slang_b;
+
+    @FXML
+    private Button quiz_slang_c;
+
+    @FXML
+    private Button quiz_slang_d;
 
     private List<SearchHistoryEntry> searchHistory = new ArrayList<>();
 
@@ -608,11 +624,14 @@ public class DashboardController {
 
     public void getRandomWord() {
         List<String> listKey = new ArrayList<String>(Dictionary.getData().keySet());
-        Random rand = new Random();
-        String randomSlang = listKey.get(rand.nextInt(listKey.size()));
-        String randomDefs = Dictionary.getData().get(randomSlang).toString();
+        Random randSlang = new Random();
+        String randomSlang = listKey.get(randSlang.nextInt(listKey.size()));
+        Set<String> randomDefs = Dictionary.getData().get(randomSlang);
+        Random randDef = new Random();
+        String[] defArray = randomDefs.toArray(new String[0]);
+        String randomDef = defArray[randDef.nextInt(defArray.length)];
         random_slang_field.setText(randomSlang);
-        random_def_field.setText(randomDefs);
+        random_def_field.setText(randomDef);
     }
 
     void handleQuizForm(boolean visibleType) {
@@ -621,9 +640,56 @@ public class DashboardController {
         quiz_def_btn.setVisible(visibleType);
     }
 
+    public void getRandomSlangQuesAns() {
+        List<String> listKey = new ArrayList<String>(Dictionary.getData().keySet());
+        Random randSlang = new Random();
+        String randomSlang = listKey.get(randSlang.nextInt(listKey.size()));
+        Set<String> randomDefs = Dictionary.getData().get(randomSlang);
+        Random randDef = new Random();
+        String[] defArray = randomDefs.toArray(new String[0]);
+        String correctAns = defArray[randDef.nextInt(defArray.length)];
+        quiz_slang_question.setText(randomSlang);
+        List<String> listAns = new ArrayList<>();
+        listAns.add(correctAns);
+        for (int i = 1; i <= 3; i++) {
+            Random randSlangDif = new Random();
+            String randomSlangDif = listKey.get(randSlangDif.nextInt(listKey.size()));
+            Set<String> randomDefsDif = Dictionary.getData().get(randomSlangDif);
+            Random randDefDif = new Random();
+            String[] defArrayDif = randomDefsDif.toArray(new String[0]);
+            String randomDefDif = defArrayDif[randDefDif.nextInt(defArray.length)];
+            listAns.add((randomDefDif));
+        }
+        Collections.shuffle(listAns);
+        quiz_slang_a.setText(listAns.get(0));
+        quiz_slang_b.setText(listAns.get(1));
+        quiz_slang_c.setText(listAns.get(2));
+        quiz_slang_d.setText(listAns.get(3));
+
+        quiz_slang_a.setOnAction(e -> checkAnswer(quiz_slang_a, correctAns));
+        quiz_slang_b.setOnAction(e -> checkAnswer(quiz_slang_b, correctAns));
+        quiz_slang_c.setOnAction(e -> checkAnswer(quiz_slang_c, correctAns));
+        quiz_slang_d.setOnAction(e -> checkAnswer(quiz_slang_d, correctAns));
+    }
+
+    void checkAnswer(Button clickedButton, String correctAnswer) {
+        String buttonText = clickedButton.getText();
+        Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Message");
+        alert.setHeaderText(null);
+        if (buttonText.equals(correctAnswer)) {
+            alert.setContentText("Correct Answer");
+        } else {
+            alert.setContentText("Incorrect Answer");
+        }
+        alert.showAndWait();
+    }
+
     public void showQuizSlang() {
         handleQuizForm(false);
         quiz_slang_form.setVisible(true);
+        getRandomSlangQuesAns();
     }
 
     public void showQuizDef() {

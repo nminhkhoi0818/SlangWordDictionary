@@ -237,40 +237,40 @@
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <AnchorPane fx:id="quiz_slang_form" prefHeight="491.2" prefWidth="591.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="quiz_slang_form" prefHeight="491.2" prefWidth="591.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" layoutX="163.0" layoutY="14.0" prefHeight="79.0" prefWidth="265.0" text="Slang Word">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="94.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_slang_a" layoutX="94.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Text layoutX="149.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Slang" textAlignment="CENTER" wrappingWidth="292.5367431640625">
+                              <Text fx:id="quiz_slang_question" layoutX="149.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Slang" textAlignment="CENTER" wrappingWidth="292.5367431640625">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Text>
-                              <Button layoutX="322.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_slang_b" layoutX="322.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="94.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_slang_c" layoutX="94.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="322.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_slang_d" layoutX="322.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="quiz_def_form" layoutX="10.0" layoutY="10.0" prefHeight="501.6" prefWidth="601.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="quiz_def_form" layoutX="10.0" layoutY="10.0" prefHeight="501.6" prefWidth="601.6" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" layoutX="163.0" layoutY="14.0" prefHeight="79.0" prefWidth="265.0" text="Definition">
                                  <font>
