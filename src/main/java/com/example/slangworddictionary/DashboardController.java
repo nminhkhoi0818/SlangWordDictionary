@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -69,6 +70,9 @@ public class DashboardController {
 
     @FXML
     private AnchorPane delete_form;
+
+    @FXML
+    private AnchorPane random_form;
 
     // 1. View all words
 
@@ -173,6 +177,14 @@ public class DashboardController {
     private TableView<SlangDefinition> delete_table;
 
     // 8. Random slang word
+    @FXML
+    private Text random_slang_field;
+
+    @FXML
+    private Text random_def_field;
+
+    @FXML
+    private Button random_refresh_btn;
 
     private List<SearchHistoryEntry> searchHistory = new ArrayList<>();
 
@@ -191,11 +203,14 @@ public class DashboardController {
         delete_search.textProperty().addListener((observable, oldValue, newValue) -> {
             searchInDelete();
         });
+
+        // Activate random word
+        getRandomWord();
     }
 
     void readAllWords() throws IOException {
-        Dictionary dictionary = new Dictionary();
-        dictionary.loadData(Dictionary.DATA_DIR);
+//        Dictionary dictionary = new Dictionary();
+        Dictionary.loadData(Dictionary.DATA_DIR);
         ObservableList<SlangDefinition> slangData = FXCollections.observableArrayList();
 
         for (String slang : Dictionary.data.keySet()) {
@@ -239,6 +254,7 @@ public class DashboardController {
             add_slang_form.setVisible(false);
             edit_form.setVisible(false);
             delete_form.setVisible(false);
+            random_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == find_def_btn) {
@@ -249,6 +265,7 @@ public class DashboardController {
             add_slang_form.setVisible(false);
             edit_form.setVisible(false);
             delete_form.setVisible(false);
+            random_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == find_slang_btn) {
@@ -259,6 +276,7 @@ public class DashboardController {
             add_slang_form.setVisible(false);
             edit_form.setVisible(false);
             delete_form.setVisible(false);
+            random_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == search_history_btn) {
@@ -269,6 +287,7 @@ public class DashboardController {
             add_slang_form.setVisible(false);
             edit_form.setVisible(false);
             delete_form.setVisible(false);
+            random_form.setVisible(false);
 
             readSearchHistoryData();
         } else if (event.getSource() == add_slang_btn) {
@@ -279,6 +298,7 @@ public class DashboardController {
             find_def_form.setVisible(false);
             edit_form.setVisible(false);
             delete_form.setVisible(false);
+            random_form.setVisible(false);
         } else if (event.getSource() == edit_word_btn) {
             edit_form.setVisible(true);
             add_slang_form.setVisible(false);
@@ -287,8 +307,19 @@ public class DashboardController {
             view_all_form.setVisible(false);
             find_def_form.setVisible(false);
             delete_form.setVisible(false);
+            random_form.setVisible(false);
         } else if (event.getSource() == delete_word_btn) {
             delete_form.setVisible(true);
+            edit_form.setVisible(false);
+            add_slang_form.setVisible(false);
+            search_history_form.setVisible(false);
+            find_slang_form.setVisible(false);
+            view_all_form.setVisible(false);
+            find_def_form.setVisible(false);
+            random_form.setVisible(false);
+        } else if (event.getSource() == random_word_btn) {
+            random_form.setVisible(true);
+            delete_form.setVisible(false);
             edit_form.setVisible(false);
             add_slang_form.setVisible(false);
             search_history_form.setVisible(false);
@@ -532,5 +563,14 @@ public class DashboardController {
         alert.setHeaderText(null);
         alert.setContentText("Reset Dictionary Successfully!");
         alert.showAndWait();
+    }
+
+    public void getRandomWord() {
+        List<String> listKey = new ArrayList<String>(Dictionary.getData().keySet());
+        Random rand = new Random();
+        String randomSlang = listKey.get(rand.nextInt(listKey.size()));
+        String randomDefs = Dictionary.getData().get(randomSlang).toString();
+        random_slang_field.setText(randomSlang);
+        random_def_field.setText(randomDefs);
     }
 }
