@@ -9,7 +9,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
@@ -456,11 +455,11 @@ public class DashboardController {
                 alert.setContentText("Successfully Added!");
                 alert.showAndWait();
             }
-
         }
+        readAllWords();
     }
 
-    public void getItem() {
+    public void getItem() throws IOException {
         ObservableList<SlangDefinition> selectedSlang = edit_table.getSelectionModel().getSelectedItems();
         VBox content = new VBox(10);
         Label slangLabel = new Label("Slang: ");
@@ -486,12 +485,16 @@ public class DashboardController {
         button.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (!validateDialog()) {
-                    event.consume();
+                try {
+                    if (!validateDialog()) {
+                        event.consume();
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
 
-            private boolean validateDialog() {
+            private boolean validateDialog() throws IOException {
                 if ((slangField.getText().isEmpty()) || (meaningField.getText().isEmpty())) {
                     return false;
                 }
@@ -520,7 +523,8 @@ public class DashboardController {
                     }
                 }
                 saveDictionaryToFile();
-
+                readAllWords();
+                searchInEdit();
                 return true;
             }
         });
@@ -541,7 +545,7 @@ public class DashboardController {
         }
     }
 
-    public void getItemDelete() {
+    public void getItemDelete() throws IOException {
         ObservableList<SlangDefinition> selectedSlang = delete_table.getSelectionModel().getSelectedItems();
         String editSlang = selectedSlang.get(0).getSlang();
         String editDef = selectedSlang.get(0).getDefinition();
@@ -562,17 +566,30 @@ public class DashboardController {
         alert.setHeaderText(null);
         alert.setContentText("Delete Successfully!");
         alert.showAndWait();
+        readAllWords();
+        searchInDelete();
     }
 
     public void resetSlangDictionary() throws IOException {
         Dictionary.loadData(Dictionary.DATA_RAW);
         saveDictionaryToFile();
         Alert alert;
-        alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Message");
+        alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Message");
         alert.setHeaderText(null);
-        alert.setContentText("Reset Dictionary Successfully!");
-        alert.showAndWait();
+        alert.setContentText("Do you want to reset dictionary?");
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.get().equals(ButtonType.YES)) {
+            Alert alert1;
+            alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setTitle("Information Message");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Reset Dictionary Successfully!");
+            alert1.showAndWait();
+        }
+        readAllWords();
     }
 
     public void getRandomWord() {
@@ -687,7 +704,22 @@ public class DashboardController {
         getRandomSlangQuesAns();
     }
 
-    public void getDefQuestion(ActionEvent actionEvent) {
+    public void getDefQuestion() {
         getRandomDefQuesAns();
+    }
+
+    public void clearHistory() throws IOException {
+        String historyFilePath = "assets/history.txt";  // Replace with the actual path to your history.txt file
+
+        try {
+            FileWriter fileWriter = new FileWriter(historyFilePath);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write("");
+            bufferedWriter.close();
+            fileWriter.close();
+        } catch (IOException ignored) {
+
+        }
+        readSearchHistoryData();
     }
 }
