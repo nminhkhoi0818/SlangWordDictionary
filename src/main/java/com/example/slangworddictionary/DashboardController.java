@@ -49,6 +49,9 @@ public class DashboardController {
     @FXML
     private Button view_all_btn;
 
+    @FXML
+    private Button about_btn;
+
     // Form - AnchorPane
     @FXML
     private AnchorPane view_all_form;
@@ -82,6 +85,9 @@ public class DashboardController {
 
     @FXML
     private AnchorPane quiz_def_form;
+
+    @FXML
+    private AnchorPane about_form;
 
     // 1. View all words
 
@@ -307,6 +313,7 @@ public class DashboardController {
             delete_form.setVisible(false);
             random_form.setVisible(false);
             quiz_form.setVisible(false);
+            about_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == find_def_btn) {
@@ -319,6 +326,7 @@ public class DashboardController {
             delete_form.setVisible(false);
             random_form.setVisible(false);
             quiz_form.setVisible(false);
+            about_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == find_slang_btn) {
@@ -331,6 +339,7 @@ public class DashboardController {
             delete_form.setVisible(false);
             random_form.setVisible(false);
             quiz_form.setVisible(false);
+            about_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == search_history_btn) {
@@ -343,6 +352,7 @@ public class DashboardController {
             delete_form.setVisible(false);
             random_form.setVisible(false);
             quiz_form.setVisible(false);
+            about_form.setVisible(false);
 
             readSearchHistoryData();
         } else if (event.getSource() == add_slang_btn) {
@@ -355,6 +365,7 @@ public class DashboardController {
             delete_form.setVisible(false);
             random_form.setVisible(false);
             quiz_form.setVisible(false);
+            about_form.setVisible(false);
         } else if (event.getSource() == edit_word_btn) {
             edit_form.setVisible(true);
             add_slang_form.setVisible(false);
@@ -365,6 +376,7 @@ public class DashboardController {
             delete_form.setVisible(false);
             random_form.setVisible(false);
             quiz_form.setVisible(false);
+            about_form.setVisible(false);
         } else if (event.getSource() == delete_word_btn) {
             delete_form.setVisible(true);
             edit_form.setVisible(false);
@@ -375,6 +387,7 @@ public class DashboardController {
             find_def_form.setVisible(false);
             random_form.setVisible(false);
             quiz_form.setVisible(false);
+            about_form.setVisible(false);
         } else if (event.getSource() == random_word_btn) {
             random_form.setVisible(true);
             delete_form.setVisible(false);
@@ -385,6 +398,7 @@ public class DashboardController {
             view_all_form.setVisible(false);
             find_def_form.setVisible(false);
             quiz_form.setVisible(false);
+            about_form.setVisible(false);
         } else if (event.getSource() == quiz_game_btn) {
             quiz_form.setVisible(true);
             random_form.setVisible(false);
@@ -398,7 +412,21 @@ public class DashboardController {
 
             quiz_slang_form.setVisible(false);
             quiz_def_form.setVisible(false);
+            about_form.setVisible(false);
             handleQuizForm(true);
+        } else if (event.getSource() == about_btn) {
+            about_form.setVisible(true);
+            quiz_form.setVisible(false);
+            random_form.setVisible(false);
+            delete_form.setVisible(false);
+            edit_form.setVisible(false);
+            add_slang_form.setVisible(false);
+            search_history_form.setVisible(false);
+            find_slang_form.setVisible(false);
+            view_all_form.setVisible(false);
+            find_def_form.setVisible(false);
+            quiz_slang_form.setVisible(false);
+            quiz_def_form.setVisible(false);
         }
     }
 

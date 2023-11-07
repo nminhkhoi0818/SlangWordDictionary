@@ -28,6 +28,7 @@
                         <Button fx:id="reset_btn" mnemonicParsing="false" onAction="#resetSlangDictionary" prefHeight="42.0" prefWidth="152.0" text="Reset slang word" />
                         <Button fx:id="random_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Random slang word" />
                         <Button fx:id="quiz_game_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Quiz Game" />
+                  <Button fx:id="about_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="156.0" text="About me" />
                     </children>
                 </VBox>
             </left>
@@ -270,7 +271,7 @@
                                  </font>
                               </Button>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="quiz_def_form" layoutX="10.0" layoutY="10.0" prefHeight="501.6" prefWidth="601.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="quiz_def_form" layoutX="10.0" layoutY="10.0" prefHeight="501.6" prefWidth="601.6" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Text fx:id="quiz_def_question" layoutX="149.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Definition" textAlignment="CENTER" wrappingWidth="292.5367431640625">
                                  <font>
@@ -302,6 +303,29 @@
                                     <Font size="16.0" />
                                  </font>
                               </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="about_form" prefHeight="491.2" prefWidth="591.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane layoutX="126.0" layoutY="105.0" prefHeight="214.0" prefWidth="321.0">
+                           <children>
+                              <Text layoutX="82.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyễn Minh Khôi" wrappingWidth="174.936767578125">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="119.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="21127081" textAlignment="CENTER" wrappingWidth="101.3367919921875">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="13.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Slang Word Project" textAlignment="CENTER" wrappingWidth="311.73675537109375">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                      </children>
