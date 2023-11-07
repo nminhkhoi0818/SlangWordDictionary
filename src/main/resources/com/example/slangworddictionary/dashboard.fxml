@@ -24,7 +24,7 @@
                         <Button fx:id="add_slang_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Add new slang word" />
                         <Button fx:id="edit_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Edit slang word" />
                         <Button fx:id="delete_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Delete slang word" />
-                        <Button fx:id="reset_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Reset slang word" />
+                        <Button fx:id="reset_btn" mnemonicParsing="false" onAction="#resetSlangDictionary" prefHeight="42.0" prefWidth="152.0" text="Reset slang word" />
                         <Button fx:id="random_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Random slang word" />
                         <Button fx:id="quiz_game_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Quiz Game" />
                     </children>

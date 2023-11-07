@@ -522,4 +522,15 @@ public class DashboardController {
         alert.setContentText("Delete Successfully!");
         alert.showAndWait();
     }
+
+    public void resetSlangDictionary() throws IOException {
+        Dictionary.loadData(Dictionary.DATA_RAW);
+        saveDictionaryToFile();
+        Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Reset Dictionary Successfully!");
+        alert.showAndWait();
+    }
 }

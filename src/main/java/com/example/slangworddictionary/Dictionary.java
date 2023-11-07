@@ -9,10 +9,11 @@ import java.util.stream.Collectors;
 
 public class Dictionary {
     public static String DATA_DIR = "assets/data/slang.txt";
+    public static String DATA_RAW = "assets/data/slang_raw.txt";
 
     public static TreeMap<String, Set<String>> data;
 
-    public void loadData(String path) throws IOException {
+    public static void loadData(String path) throws IOException {
         data = new TreeMap<String, Set<String>>();
 
         try {
