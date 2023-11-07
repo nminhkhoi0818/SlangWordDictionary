@@ -266,7 +266,6 @@ public class DashboardController {
     }
 
     void readAllWords() throws IOException {
-//        Dictionary dictionary = new Dictionary();
         Dictionary.loadData(Dictionary.DATA_DIR);
         ObservableList<SlangDefinition> slangData = FXCollections.observableArrayList();
 
@@ -303,130 +302,40 @@ public class DashboardController {
 
     @FXML
     void switchForm(ActionEvent event) throws IOException {
+        List<AnchorPane> forms = Arrays.asList(
+                view_all_form, find_def_form, find_slang_form, search_history_form,
+                add_slang_form, edit_form, delete_form, random_form, quiz_form, about_form
+        );
+
+        for (AnchorPane form : forms) {
+            form.setVisible(false);
+        }
+
         if (event.getSource() == view_all_btn) {
             view_all_form.setVisible(true);
-            find_def_form.setVisible(false);
-            find_slang_form.setVisible(false);
-            search_history_form.setVisible(false);
-            add_slang_form.setVisible(false);
-            edit_form.setVisible(false);
-            delete_form.setVisible(false);
-            random_form.setVisible(false);
-            quiz_form.setVisible(false);
-            about_form.setVisible(false);
-
             readAllWords();
         } else if (event.getSource() == find_def_btn) {
             find_def_form.setVisible(true);
-            view_all_form.setVisible(false);
-            find_slang_form.setVisible(false);
-            search_history_form.setVisible(false);
-            add_slang_form.setVisible(false);
-            edit_form.setVisible(false);
-            delete_form.setVisible(false);
-            random_form.setVisible(false);
-            quiz_form.setVisible(false);
-            about_form.setVisible(false);
-
             readAllWords();
         } else if (event.getSource() == find_slang_btn) {
             find_slang_form.setVisible(true);
-            view_all_form.setVisible(false);
-            find_def_form.setVisible(false);
-            search_history_form.setVisible(false);
-            add_slang_form.setVisible(false);
-            edit_form.setVisible(false);
-            delete_form.setVisible(false);
-            random_form.setVisible(false);
-            quiz_form.setVisible(false);
-            about_form.setVisible(false);
-
             readAllWords();
         } else if (event.getSource() == search_history_btn) {
             search_history_form.setVisible(true);
-            find_slang_form.setVisible(false);
-            view_all_form.setVisible(false);
-            find_def_form.setVisible(false);
-            add_slang_form.setVisible(false);
-            edit_form.setVisible(false);
-            delete_form.setVisible(false);
-            random_form.setVisible(false);
-            quiz_form.setVisible(false);
-            about_form.setVisible(false);
-
             readSearchHistoryData();
         } else if (event.getSource() == add_slang_btn) {
             add_slang_form.setVisible(true);
-            search_history_form.setVisible(false);
-            find_slang_form.setVisible(false);
-            view_all_form.setVisible(false);
-            find_def_form.setVisible(false);
-            edit_form.setVisible(false);
-            delete_form.setVisible(false);
-            random_form.setVisible(false);
-            quiz_form.setVisible(false);
-            about_form.setVisible(false);
         } else if (event.getSource() == edit_word_btn) {
             edit_form.setVisible(true);
-            add_slang_form.setVisible(false);
-            search_history_form.setVisible(false);
-            find_slang_form.setVisible(false);
-            view_all_form.setVisible(false);
-            find_def_form.setVisible(false);
-            delete_form.setVisible(false);
-            random_form.setVisible(false);
-            quiz_form.setVisible(false);
-            about_form.setVisible(false);
         } else if (event.getSource() == delete_word_btn) {
             delete_form.setVisible(true);
-            edit_form.setVisible(false);
-            add_slang_form.setVisible(false);
-            search_history_form.setVisible(false);
-            find_slang_form.setVisible(false);
-            view_all_form.setVisible(false);
-            find_def_form.setVisible(false);
-            random_form.setVisible(false);
-            quiz_form.setVisible(false);
-            about_form.setVisible(false);
         } else if (event.getSource() == random_word_btn) {
             random_form.setVisible(true);
-            delete_form.setVisible(false);
-            edit_form.setVisible(false);
-            add_slang_form.setVisible(false);
-            search_history_form.setVisible(false);
-            find_slang_form.setVisible(false);
-            view_all_form.setVisible(false);
-            find_def_form.setVisible(false);
-            quiz_form.setVisible(false);
-            about_form.setVisible(false);
         } else if (event.getSource() == quiz_game_btn) {
             quiz_form.setVisible(true);
-            random_form.setVisible(false);
-            delete_form.setVisible(false);
-            edit_form.setVisible(false);
-            add_slang_form.setVisible(false);
-            search_history_form.setVisible(false);
-            find_slang_form.setVisible(false);
-            view_all_form.setVisible(false);
-            find_def_form.setVisible(false);
-
-            quiz_slang_form.setVisible(false);
-            quiz_def_form.setVisible(false);
-            about_form.setVisible(false);
             handleQuizForm(true);
         } else if (event.getSource() == about_btn) {
             about_form.setVisible(true);
-            quiz_form.setVisible(false);
-            random_form.setVisible(false);
-            delete_form.setVisible(false);
-            edit_form.setVisible(false);
-            add_slang_form.setVisible(false);
-            search_history_form.setVisible(false);
-            find_slang_form.setVisible(false);
-            view_all_form.setVisible(false);
-            find_def_form.setVisible(false);
-            quiz_slang_form.setVisible(false);
-            quiz_def_form.setVisible(false);
         }
     }
 
@@ -472,9 +381,9 @@ public class DashboardController {
                 return true;
             }
             if (Objects.equals(filterType, "definition"))
-                return slangDefinition.getDefinition().toLowerCase().contains(searchTerm);
+                return slangDefinition.getDefinition().toLowerCase().startsWith(searchTerm);
             else
-                return slangDefinition.getSlang().toLowerCase().contains(searchTerm);
+                return slangDefinition.getSlang().toLowerCase().startsWith(searchTerm);
         });
 
         if (Objects.equals(filterType, "definition")) {
