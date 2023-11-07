@@ -74,6 +74,15 @@ public class DashboardController {
     @FXML
     private AnchorPane random_form;
 
+    @FXML
+    private AnchorPane quiz_form;
+
+    @FXML
+    private AnchorPane quiz_slang_form;
+
+    @FXML
+    private AnchorPane quiz_def_form;
+
     // 1. View all words
 
     @FXML
@@ -186,6 +195,16 @@ public class DashboardController {
     @FXML
     private Button random_refresh_btn;
 
+    // 9, 10. Quiz Game
+    @FXML
+    private Label quiz_header;
+
+    @FXML
+    private Button quiz_slang_btn;
+
+    @FXML
+    private Button quiz_def_btn;
+
     private List<SearchHistoryEntry> searchHistory = new ArrayList<>();
 
     public void initialize() throws IOException {
@@ -255,6 +274,7 @@ public class DashboardController {
             edit_form.setVisible(false);
             delete_form.setVisible(false);
             random_form.setVisible(false);
+            quiz_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == find_def_btn) {
@@ -266,6 +286,7 @@ public class DashboardController {
             edit_form.setVisible(false);
             delete_form.setVisible(false);
             random_form.setVisible(false);
+            quiz_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == find_slang_btn) {
@@ -277,6 +298,7 @@ public class DashboardController {
             edit_form.setVisible(false);
             delete_form.setVisible(false);
             random_form.setVisible(false);
+            quiz_form.setVisible(false);
 
             readAllWords();
         } else if (event.getSource() == search_history_btn) {
@@ -288,6 +310,7 @@ public class DashboardController {
             edit_form.setVisible(false);
             delete_form.setVisible(false);
             random_form.setVisible(false);
+            quiz_form.setVisible(false);
 
             readSearchHistoryData();
         } else if (event.getSource() == add_slang_btn) {
@@ -299,6 +322,7 @@ public class DashboardController {
             edit_form.setVisible(false);
             delete_form.setVisible(false);
             random_form.setVisible(false);
+            quiz_form.setVisible(false);
         } else if (event.getSource() == edit_word_btn) {
             edit_form.setVisible(true);
             add_slang_form.setVisible(false);
@@ -308,6 +332,7 @@ public class DashboardController {
             find_def_form.setVisible(false);
             delete_form.setVisible(false);
             random_form.setVisible(false);
+            quiz_form.setVisible(false);
         } else if (event.getSource() == delete_word_btn) {
             delete_form.setVisible(true);
             edit_form.setVisible(false);
@@ -317,6 +342,7 @@ public class DashboardController {
             view_all_form.setVisible(false);
             find_def_form.setVisible(false);
             random_form.setVisible(false);
+            quiz_form.setVisible(false);
         } else if (event.getSource() == random_word_btn) {
             random_form.setVisible(true);
             delete_form.setVisible(false);
@@ -326,6 +352,21 @@ public class DashboardController {
             find_slang_form.setVisible(false);
             view_all_form.setVisible(false);
             find_def_form.setVisible(false);
+            quiz_form.setVisible(false);
+        } else if (event.getSource() == quiz_game_btn) {
+            quiz_form.setVisible(true);
+            random_form.setVisible(false);
+            delete_form.setVisible(false);
+            edit_form.setVisible(false);
+            add_slang_form.setVisible(false);
+            search_history_form.setVisible(false);
+            find_slang_form.setVisible(false);
+            view_all_form.setVisible(false);
+            find_def_form.setVisible(false);
+
+            quiz_slang_form.setVisible(false);
+            quiz_def_form.setVisible(false);
+            handleQuizForm(true);
         }
     }
 
@@ -572,5 +613,21 @@ public class DashboardController {
         String randomDefs = Dictionary.getData().get(randomSlang).toString();
         random_slang_field.setText(randomSlang);
         random_def_field.setText(randomDefs);
+    }
+
+    void handleQuizForm(boolean visibleType) {
+        quiz_header.setVisible(visibleType);
+        quiz_slang_btn.setVisible(visibleType);
+        quiz_def_btn.setVisible(visibleType);
+    }
+
+    public void showQuizSlang() {
+        handleQuizForm(false);
+        quiz_slang_form.setVisible(true);
+    }
+
+    public void showQuizDef() {
+        handleQuizForm(false);
+        quiz_def_form.setVisible(true);
     }
 }

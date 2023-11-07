@@ -198,7 +198,7 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="random_form" layoutX="14.0" prefHeight="491.2" prefWidth="591.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="random_form" layoutX="14.0" prefHeight="491.2" prefWidth="591.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label alignment="CENTER" layoutX="168.0" layoutY="61.0" prefHeight="48.0" prefWidth="222.0" text="On this day Slang word">
                            <font>
@@ -218,6 +218,92 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="quiz_form" layoutX="24.0" layoutY="10.0" prefHeight="501.6" prefWidth="615.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="quiz_header" alignment="CENTER" layoutX="135.0" layoutY="86.0" prefHeight="69.0" prefWidth="321.0" text="Quiz Game" visible="false">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="quiz_slang_btn" layoutX="60.0" layoutY="190.0" mnemonicParsing="false" onAction="#showQuizSlang" prefHeight="112.0" prefWidth="211.0" text="Slang" visible="false">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="quiz_def_btn" layoutX="337.0" layoutY="190.0" mnemonicParsing="false" onAction="#showQuizDef" prefHeight="112.0" prefWidth="211.0" text="Definition" visible="false">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <AnchorPane fx:id="quiz_slang_form" prefHeight="491.2" prefWidth="591.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="163.0" layoutY="14.0" prefHeight="79.0" prefWidth="265.0" text="Slang Word">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="94.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Text layoutX="149.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Slang" textAlignment="CENTER" wrappingWidth="292.5367431640625">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Button layoutX="322.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="94.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="322.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                           </children></AnchorPane>
+                        <AnchorPane fx:id="quiz_def_form" layoutX="10.0" layoutY="10.0" prefHeight="501.6" prefWidth="601.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="163.0" layoutY="14.0" prefHeight="79.0" prefWidth="265.0" text="Definition">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="94.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Text layoutX="149.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Definition" textAlignment="CENTER" wrappingWidth="292.5367431640625">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Button layoutX="322.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="94.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="322.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </children>
