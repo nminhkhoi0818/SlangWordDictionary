@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class DashboardController {
@@ -332,6 +333,8 @@ public class DashboardController {
             random_form.setVisible(true);
         } else if (event.getSource() == quiz_game_btn) {
             quiz_form.setVisible(true);
+            quiz_slang_form.setVisible(false);
+            quiz_def_form.setVisible(false);
             handleQuizForm(true);
         } else if (event.getSource() == about_btn) {
             about_form.setVisible(true);
@@ -342,7 +345,7 @@ public class DashboardController {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("assets/history.txt", true));
             for (SearchHistoryEntry entry : searchHistory) {
-                bw.write(entry.getSearchTerm() + " " + entry.getTimestamp() + "\n");
+                bw.write(entry.getSearchTerm() + " " + LocalDateTime.parse(entry.getTimestamp(), DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")) + "\n");
             }
             bw.close();
         } catch (IOException e) {
