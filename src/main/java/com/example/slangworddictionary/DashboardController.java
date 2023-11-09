@@ -419,6 +419,21 @@ public class DashboardController {
         addSearchToHistory(searchTerm);
     }
 
+    void updateDataInFile(TreeMap<String, Set<String>> data) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("assets/data/slang.txt"));
+
+        for (Map.Entry<String, Set<String>> entry : data.entrySet()) {
+            String slang = entry.getKey();
+            Set<String> definitions = entry.getValue();
+            String definitionsStr = String.join("|", definitions);
+            String line = slang + "`" + definitionsStr;
+            bw.write(line + "\n");
+        }
+
+        bw.close();
+    }
+
+
     void addSlangToDictionary(String slang, String definition) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter("assets/data/slang.txt", true));
         bw.write(slang + "`" + definition + "\n");
@@ -439,27 +454,33 @@ public class DashboardController {
                 alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
                 Optional<ButtonType> option = alert.showAndWait();
                 if (option.get().equals(ButtonType.YES)) {
-
+                    Dictionary.getData().get(slang).clear();
+                    Dictionary.getData().get(slang).add(definition);
+                    updateDataInFile(Dictionary.getData());
+                    displayResultMessage("Successfully Overwrite!");
                 } else if (option.get().equals(ButtonType.NO)) {
                     addSlangToDictionary(slang, definition);
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully Duplicated!");
-                    alert.showAndWait();
+                    displayResultMessage("Successfully Duplicated!");
                 }
             }
             else {
-                addSlangToDictionary(slang, definition);
-                Alert alert;
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Successfully Added!");
-                alert.showAndWait();
+                Set<String> definitions;
+                definitions = new HashSet<>();
+                definitions.add(definition);
+                Dictionary.getData().put(slang, definitions);
+                updateDataInFile(Dictionary.getData());
+                displayResultMessage("Successfully Added!");
             }
         }
         readAllWords();
+    }
+
+    private void displayResultMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Message");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     public void getItem() throws IOException {

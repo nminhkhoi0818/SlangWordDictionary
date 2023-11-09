@@ -12,39 +12,65 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.slangworddictionary.DashboardController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.slangworddictionary.DashboardController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <BorderPane prefHeight="542.0" prefWidth="469.0">
          <left>
-            <VBox prefHeight="434.0" prefWidth="152.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="434.0" prefWidth="152.0" spacing="10.0" style="-fx-background-color: #FFF;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="view_all_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="View all words" />
-                  <Button fx:id="find_def_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Find by definition" />
-                  <Button fx:id="find_slang_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Find by slang word" />
-                  <Button fx:id="search_history_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Search History" />
-                  <Button fx:id="add_slang_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Add new slang word" />
-                  <Button fx:id="edit_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Edit slang word" />
-                  <Button fx:id="delete_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Delete slang word" />
-                  <Button fx:id="reset_btn" mnemonicParsing="false" onAction="#resetSlangDictionary" prefHeight="42.0" prefWidth="152.0" text="Reset slang word" />
-                  <Button fx:id="random_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Random slang word" />
-                  <Button fx:id="quiz_game_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="42.0" prefWidth="152.0" text="Quiz Game" />
-                  <Button fx:id="about_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="156.0" text="About me" />
+                  <Button fx:id="view_all_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="View all words">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="find_def_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Find definition">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="find_slang_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="32.0" prefWidth="132.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Find slang word">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="search_history_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="132.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Search History">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="add_slang_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Add slang word">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="edit_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="132.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Edit slang word">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="delete_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="129.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Delete slang word">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="reset_btn" mnemonicParsing="false" onAction="#resetSlangDictionary" prefHeight="37.0" prefWidth="138.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Reset slang word">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="random_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="136.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Random slang word">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="quiz_game_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="132.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Quiz Game">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="about_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="About me">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
                </children>
             </VBox>
          </left>
-         <top>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="269.0" text="SLANG WORD DICTIONARY" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </top>
          <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="610.0" prefWidth="634.0" style="-fx-background-color: #FFF;" BorderPane.alignment="CENTER">
                <children>
                   <AnchorPane fx:id="view_all_form" layoutX="-4.0" layoutY="14.0" prefHeight="505.6" prefWidth="590.4" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TableView fx:id="view_table" layoutY="91.0" prefHeight="329.0" prefWidth="591.0">
+                        <TableView fx:id="view_table" layoutX="18.0" layoutY="139.0" prefHeight="329.0" prefWidth="591.0">
                            <columns>
                               <TableColumn fx:id="view_index_col" prefWidth="75.0" text="STT" />
                               <TableColumn fx:id="view_slang_col" prefWidth="75.0" text="Slang Word" />
@@ -54,27 +80,27 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <Label alignment="CENTER" layoutX="183.0" layoutY="14.0" prefHeight="55.0" prefWidth="225.0" text="Slang word list">
+                        <Label layoutX="18.0" layoutY="59.0" prefHeight="36.0" prefWidth="226.0" text="Slang word list">
                            <font>
-                              <Font size="30.0" />
+                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="find_def_form" prefHeight="491.2" prefWidth="590.4" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane layoutX="102.0" layoutY="14.0" prefHeight="89.0" prefWidth="410.0">
+                        <AnchorPane layoutX="22.0" layoutY="62.0" prefHeight="101.0" prefWidth="451.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="132.0" layoutY="3.0" prefHeight="22.0" prefWidth="168.0" text="Find by definition">
+                              <Label alignment="CENTER" layoutY="-1.0" prefHeight="22.0" prefWidth="168.0" text="Find by definition">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="filter_def" layoutX="20.0" layoutY="41.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
-                              <Button fx:id="seach_def_btn" layoutX="337.0" layoutY="41.0" mnemonicParsing="false" onAction="#onDefSearchClick" prefHeight="33.0" prefWidth="94.0" text="Search" />
+                              <TextField fx:id="filter_def" layoutY="52.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
+                              <Button fx:id="seach_def_btn" layoutX="322.0" layoutY="52.0" mnemonicParsing="false" onAction="#onDefSearchClick" prefHeight="33.0" prefWidth="94.0" text="Search" />
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="filter_def_table" layoutY="112.0" prefHeight="314.0" prefWidth="590.0">
+                        <TableView fx:id="filter_def_table" layoutX="19.0" layoutY="177.0" prefHeight="314.0" prefWidth="590.0">
                            <columns>
                               <TableColumn fx:id="filter_index_col" prefWidth="75.0" text="STT" />
                               <TableColumn fx:id="filter_slang_col" prefWidth="75.0" text="Slang Word" />
@@ -88,18 +114,18 @@
                   </AnchorPane>
                   <AnchorPane fx:id="find_slang_form" layoutX="10.0" layoutY="10.0" prefHeight="501.6" prefWidth="600.8" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane layoutX="102.0" layoutY="14.0" prefHeight="89.0" prefWidth="410.0">
+                        <AnchorPane layoutX="18.0" layoutY="61.0" prefHeight="89.0" prefWidth="410.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="112.0" layoutY="2.0" prefHeight="23.0" prefWidth="185.0" text="Find by slang word">
+                              <Label prefHeight="23.0" prefWidth="185.0" text="Find by slang word">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="filter_slang" layoutX="21.0" layoutY="41.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
-                              <Button fx:id="search_slang_btn" layoutX="327.0" layoutY="42.0" mnemonicParsing="false" onAction="#onSlangSearchClick" prefHeight="31.0" prefWidth="82.0" text="Search" />
+                              <TextField fx:id="filter_slang" layoutY="56.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
+                              <Button fx:id="search_slang_btn" layoutX="327.0" layoutY="57.0" mnemonicParsing="false" onAction="#onSlangSearchClick" prefHeight="33.0" prefWidth="85.0" text="Search" />
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="filter_slang_table" layoutY="112.0" prefHeight="314.0" prefWidth="590.0">
+                        <TableView fx:id="filter_slang_table" layoutX="18.0" layoutY="187.0" prefHeight="314.0" prefWidth="590.0">
                            <columns>
                               <TableColumn fx:id="filter_slang_index_col" prefWidth="75.0" text="STT" />
                               <TableColumn fx:id="filter_slang_slang_col" prefWidth="75.0" text="Slang Word" />
@@ -113,12 +139,12 @@
                   </AnchorPane>
                   <AnchorPane fx:id="search_history_form" prefHeight="491.2" prefWidth="591.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label alignment="CENTER" layoutX="178.0" layoutY="22.0" prefHeight="47.0" prefWidth="236.0" text="Search History">
+                        <Label layoutX="19.0" layoutY="50.0" prefHeight="47.0" prefWidth="236.0" text="Search History">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="search_history_table" layoutY="105.0" prefHeight="304.0" prefWidth="590.0">
+                        <TableView fx:id="search_history_table" layoutX="18.0" layoutY="115.0" prefHeight="304.0" prefWidth="590.0">
                            <columns>
                               <TableColumn fx:id="word_history_col" prefWidth="75.0" text="Search Term" />
                               <TableColumn fx:id="time_history_col" prefWidth="75.0" text="Timestamp" />
@@ -127,7 +153,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <Button layoutX="201.0" layoutY="421.0" mnemonicParsing="false" onAction="#clearHistory" prefHeight="42.0" prefWidth="188.0" text="Clear History">
+                        <Button layoutX="219.0" layoutY="433.0" mnemonicParsing="false" onAction="#clearHistory" prefHeight="42.0" prefWidth="188.0" text="Clear History">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -156,18 +182,18 @@
                      </children></AnchorPane>
                   <AnchorPane fx:id="edit_form" layoutX="20.0" layoutY="20.0" prefHeight="521.6" prefWidth="620.8" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane layoutX="102.0" layoutY="14.0" prefHeight="89.0" prefWidth="410.0">
+                        <AnchorPane layoutX="18.0" layoutY="57.0" prefHeight="80.0" prefWidth="397.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="112.0" layoutY="2.0" prefHeight="23.0" prefWidth="185.0" text="Edit slang word">
+                              <Label layoutY="-1.0" prefHeight="23.0" prefWidth="185.0" text="Edit slang word">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="edit_search" layoutX="21.0" layoutY="41.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
-                              <Button fx:id="edit_search_btn" layoutX="327.0" layoutY="42.0" mnemonicParsing="false" onAction="#onSlangSearchClick" prefHeight="31.0" prefWidth="82.0" text="Search" />
+                              <TextField fx:id="edit_search" layoutY="45.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
+                              <Button fx:id="edit_search_btn" layoutX="313.0" layoutY="46.0" mnemonicParsing="false" onAction="#onSlangSearchClick" prefHeight="31.0" prefWidth="82.0" text="Search" />
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="edit_table" layoutY="112.0" onMouseClicked="#getItem" prefHeight="314.0" prefWidth="590.0">
+                        <TableView fx:id="edit_table" layoutX="18.0" layoutY="183.0" onMouseClicked="#getItem" prefHeight="314.0" prefWidth="590.0">
                            <columns>
                               <TableColumn fx:id="edit_slang_index_col" prefWidth="75.0" text="STT" />
                               <TableColumn fx:id="edit_slang_slang_col" prefWidth="75.0" text="Slang Word" />
@@ -181,18 +207,18 @@
                   </AnchorPane>
                   <AnchorPane fx:id="delete_form" layoutX="30.0" layoutY="30.0" prefHeight="552.0" prefWidth="651.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane layoutX="102.0" layoutY="14.0" prefHeight="89.0" prefWidth="410.0">
+                        <AnchorPane layoutX="19.0" layoutY="64.0" prefHeight="79.0" prefWidth="402.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="112.0" layoutY="2.0" prefHeight="23.0" prefWidth="185.0" text="Delete slang word">
+                              <Label layoutY="-1.0" prefHeight="23.0" prefWidth="185.0" text="Delete slang word">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="delete_search" layoutX="21.0" layoutY="41.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
-                              <Button fx:id="delete_search_btn" layoutX="327.0" layoutY="42.0" mnemonicParsing="false" onAction="#onSlangSearchClick" prefHeight="31.0" prefWidth="82.0" text="Search" />
+                              <TextField fx:id="delete_search" layoutY="45.0" prefHeight="34.0" prefWidth="294.0" promptText="Search" />
+                              <Button fx:id="delete_search_btn" layoutX="319.0" layoutY="46.0" mnemonicParsing="false" onAction="#onSlangSearchClick" prefHeight="31.0" prefWidth="82.0" text="Search" />
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="delete_table" layoutY="112.0" onMouseClicked="#getItemDelete" prefHeight="314.0" prefWidth="590.0">
+                        <TableView fx:id="delete_table" layoutX="19.0" layoutY="176.0" onMouseClicked="#getItemDelete" prefHeight="314.0" prefWidth="590.0">
                            <columns>
                               <TableColumn fx:id="delete_slang_index_col" prefWidth="75.0" text="STT" />
                               <TableColumn fx:id="delete_slang_slang_col" prefWidth="75.0" text="Slang Word" />
@@ -226,7 +252,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="quiz_form" layoutX="24.0" layoutY="10.0" prefHeight="501.6" prefWidth="615.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="quiz_form" layoutX="24.0" layoutY="10.0" prefHeight="501.6" prefWidth="615.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label fx:id="quiz_header" alignment="CENTER" layoutX="135.0" layoutY="86.0" prefHeight="69.0" prefWidth="321.0" text="Quiz Game" visible="false">
                            <font>
@@ -243,9 +269,9 @@
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <AnchorPane fx:id="quiz_slang_form" prefHeight="491.2" prefWidth="591.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="quiz_slang_form" prefHeight="491.2" prefWidth="591.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button fx:id="quiz_slang_a" layoutX="94.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_slang_a" layoutX="94.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="182.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
