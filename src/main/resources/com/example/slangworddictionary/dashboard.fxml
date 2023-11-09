@@ -18,47 +18,47 @@
          <left>
             <VBox alignment="CENTER" prefHeight="434.0" prefWidth="152.0" spacing="10.0" style="-fx-background-color: #FFF;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="view_all_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="View all words">
+                  <Button fx:id="view_all_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" text="View all words">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="find_def_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Find definition">
+                  <Button fx:id="find_def_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" text="Find definition">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="find_slang_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="32.0" prefWidth="132.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Find slang word">
+                  <Button fx:id="find_slang_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" text="Find slang word">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="search_history_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="132.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Search History">
+                  <Button fx:id="search_history_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" text="Search History">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="add_slang_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Add slang word">
+                  <Button fx:id="add_slang_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" text="Add word">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="edit_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="132.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Edit slang word">
+                  <Button fx:id="edit_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" text="Edit word">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="delete_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="129.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Delete slang word">
+                  <Button fx:id="delete_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" text="Delete word">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="reset_btn" mnemonicParsing="false" onAction="#resetSlangDictionary" prefHeight="37.0" prefWidth="138.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Reset slang word">
+                  <Button fx:id="reset_btn" mnemonicParsing="false" onAction="#resetSlangDictionary" prefHeight="34.0" prefWidth="130.0" text="Reset word">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="random_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="136.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Random slang word">
+                  <Button fx:id="random_word_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" text="Random word">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="quiz_game_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="132.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="Quiz Game">
+                  <Button fx:id="quiz_game_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" text="Quiz Game">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="about_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #F3F0FF; -fx-text-fill: #551FFF; -fx-background-radius: 100px;" text="About me">
+                  <Button fx:id="about_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="34.0" prefWidth="130.0" text="About me">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
@@ -269,9 +269,9 @@
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <AnchorPane fx:id="quiz_slang_form" prefHeight="491.2" prefWidth="591.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="quiz_slang_form" prefHeight="491.2" prefWidth="591.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button fx:id="quiz_slang_a" layoutX="94.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="182.0" text="Button">
+                              <Button fx:id="quiz_slang_a" layoutX="89.0" layoutY="141.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="412.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -281,22 +281,22 @@
                                     <Font size="24.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="quiz_slang_b" layoutX="322.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_slang_b" layoutX="89.0" layoutY="211.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="412.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="quiz_slang_c" layoutX="94.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_slang_c" layoutX="89.0" layoutY="279.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="412.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="quiz_slang_d" layoutX="322.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_slang_d" layoutX="89.0" layoutY="351.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="412.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="238.0" layoutY="391.0" mnemonicParsing="false" onAction="#getSlangQuestion" prefHeight="38.0" prefWidth="113.0" text="Next">
+                              <Button layoutX="238.0" layoutY="433.0" mnemonicParsing="false" onAction="#getSlangQuestion" prefHeight="38.0" prefWidth="113.0" text="Next">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -305,32 +305,32 @@
                         </AnchorPane>
                         <AnchorPane fx:id="quiz_def_form" layoutX="10.0" layoutY="10.0" prefHeight="501.6" prefWidth="601.6" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Text fx:id="quiz_def_question" layoutX="149.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Definition" textAlignment="CENTER" wrappingWidth="292.5367431640625">
+                              <Text fx:id="quiz_def_question" layoutX="148.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Definition" textAlignment="CENTER" wrappingWidth="292.5367431640625">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="quiz_def_a" layoutX="94.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_def_a" layoutX="89.0" layoutY="134.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="412.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="quiz_def_b" layoutX="322.0" layoutY="163.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_def_b" layoutX="89.0" layoutY="209.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="412.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="quiz_def_c" layoutX="94.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_def_c" layoutX="89.0" layoutY="279.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="412.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="quiz_def_d" layoutX="322.0" layoutY="283.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Button">
+                              <Button fx:id="quiz_def_d" layoutX="89.0" layoutY="353.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="412.0" text="Button">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="239.0" layoutY="394.0" mnemonicParsing="false" onAction="#getDefQuestion" prefHeight="38.0" prefWidth="113.0" text="Next">
+                              <Button layoutX="238.0" layoutY="428.0" mnemonicParsing="false" onAction="#getDefQuestion" prefHeight="38.0" prefWidth="113.0" text="Next">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
