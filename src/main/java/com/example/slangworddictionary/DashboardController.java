@@ -391,20 +391,24 @@ public class DashboardController {
         if (Objects.equals(filterType, "definition")) {
             filter_slang_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("slang"));
             filter_def_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("definition"));
+            filter_index_col.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(filter_def_table.getItems().indexOf(cellData.getValue()) + 1).asString());
             filter_def_table.setItems(filteredData);
         }
         else if (Objects.equals(filterType, "slang")) {
             filter_slang_slang_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("slang"));
             filter_slang_def_col.setCellValueFactory(new PropertyValueFactory<SlangDefinition, String>("definition"));
+            filter_slang_index_col.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(filter_slang_table.getItems().indexOf(cellData.getValue()) + 1).asString());
             filter_slang_table.setItems(filteredData);
         }
         else if (Objects.equals(filterType, "edit")) {
             edit_slang_slang_col.setCellValueFactory(new PropertyValueFactory<>("slang"));
             edit_slang_def_col.setCellValueFactory(new PropertyValueFactory<>("definition"));
+            edit_slang_index_col.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(edit_table.getItems().indexOf(cellData.getValue()) + 1).asString());
             edit_table.setItems(filteredData);
         } else {
             delete_slang_slang_col.setCellValueFactory(new PropertyValueFactory<>("slang"));
             delete_slang_def_col.setCellValueFactory(new PropertyValueFactory<>("definition"));
+            delete_slang_index_col.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(delete_table.getItems().indexOf(cellData.getValue()) + 1).asString());
             delete_table.setItems(filteredData);
         }
     }
